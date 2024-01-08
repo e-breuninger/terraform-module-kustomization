@@ -13,5 +13,9 @@ It creates kustomization resources from a kustomization data source.
 
 ## Outputs
 
-No outputs.
+| Name | Description |
+|------|-------------|
+| <a name="output_p0"></a> [p0](#output\_p0) | Kustomization resources applied with priority 0 |
+| <a name="output_p1"></a> [p1](#output\_p1) | Kustomization resources applied with priority 1 |
+| <a name="output_p2"></a> [p2](#output\_p2) | Kustomization resources applied with priority 2 |
 <!-- END_TF_DOCS -->
