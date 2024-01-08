@@ -69,3 +69,18 @@ resource "kustomization_resource" "p2" {
 
   depends_on = [kustomization_resource.p1]
 }
+
+output "p0" {
+  value       = kustomization_resource.p0
+  description = "Kustomization resources applied with priority 0"
+}
+
+output "p1" {
+  value       = kustomization_resource.p1
+  description = "Kustomization resources applied with priority 1"
+}
+
+output "p2" {
+  value       = kustomization_resource.p2
+  description = "Kustomization resources applied with priority 2"
+}
