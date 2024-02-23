@@ -25,6 +25,12 @@ variable "kustomization_data_source" {
   description = "This input accepts a kustomization_build or kustomization_overlay data source as input."
 }
 
+variable "timeout" {
+  type        = string
+  default     = "5m"
+  description = "Timeout for create, update and delete"
+}
+
 # first loop through resources in ids_prio[0]
 resource "kustomization_resource" "p0" {
   for_each = var.kustomization_data_source.ids_prio[0]
@@ -34,11 +40,16 @@ resource "kustomization_resource" "p0" {
     ? sensitive(var.kustomization_data_source.manifests[each.value])
     : var.kustomization_data_source.manifests[each.value]
   )
+  timeouts {
+    create = var.timeout
+    update = var.timeout
+    delete = var.timeout
+  }
 }
 
 # then loop through resources in ids_prio[1]
 # and set an explicit depends_on on kustomization_resource.p0
-# wait 2 minutes for any deployment or daemonset to become ready
+# wait for any deployment or daemonset to become ready
 resource "kustomization_resource" "p1" {
   for_each = var.kustomization_data_source.ids_prio[1]
 
@@ -49,8 +60,9 @@ resource "kustomization_resource" "p1" {
   )
   wait = true
   timeouts {
-    create = "2m"
-    update = "2m"
+    create = var.timeout
+    update = var.timeout
+    delete = var.timeout
   }
 
   depends_on = [kustomization_resource.p0]
@@ -66,6 +78,11 @@ resource "kustomization_resource" "p2" {
     ? sensitive(var.kustomization_data_source.manifests[each.value])
     : var.kustomization_data_source.manifests[each.value]
   )
+  timeouts {
+    create = var.timeout
+    update = var.timeout
+    delete = var.timeout
+  }
 
   depends_on = [kustomization_resource.p1]
 }
