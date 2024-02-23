@@ -10,6 +10,7 @@ It creates kustomization resources from a kustomization data source.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_kustomization_data_source"></a> [kustomization\_data\_source](#input\_kustomization\_data\_source) | This input accepts a kustomization\_build or kustomization\_overlay data source as input. | <pre>object({<br>    ids       = set(string)<br>    ids_prio  = list(set(string))<br>    manifests = map(string)<br>  })</pre> | n/a | yes |
+| <a name="input_timeout"></a> [timeout](#input\_timeout) | Timeout for create, update and delete | `string` | `"5m"` | no |
 
 ## Outputs
 
