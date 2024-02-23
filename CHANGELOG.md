@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/e-breuninger/terraform-module-kustomization/compare/v1.1.0...v1.2.0) (2024-02-23)
+
+
+### Features
+
+* Add input for create/update/delete timeout ([61b677a](https://github.com/e-breuninger/terraform-module-kustomization/commit/61b677a48bc00de9f01d0277873e7e63d46d5b52))
+
 ## [1.1.0](https://github.com/e-breuninger/terraform-module-kustomization/compare/v1.0.0...v1.1.0) (2024-01-08)
 
 
