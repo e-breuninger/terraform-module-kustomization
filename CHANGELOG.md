@@ -1,5 +1,15 @@
 # Changelog
 
+## [2.0.0](https://github.com/e-breuninger/terraform-module-kustomization/compare/v1.2.0...v2.0.0) (2024-12-10)
+
+### ⚠ BREAKING CHANGES
+
+* Work around terraform 1.10 sensitive detection
+
+### Features
+
+* Work around terraform 1.10 sensitive detection ([0eff15e](https://github.com/e-breuninger/terraform-module-kustomization/commit/0eff15e412876f6b071c35d75c3509b7941d18a6))
+
 ## [1.2.0](https://github.com/e-breuninger/terraform-module-kustomization/compare/v1.1.0...v1.2.0) (2024-02-23)
 
 
