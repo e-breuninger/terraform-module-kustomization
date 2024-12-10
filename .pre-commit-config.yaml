@@ -1,24 +1,24 @@
 ---
 repos:
   - repo: https://github.com/antonbabenko/pre-commit-terraform
-    rev: v1.77.0
+    rev: v1.96.2
     hooks:
       - id: terraform_fmt
       - id: terraform_tflint
   - repo: https://github.com/terraform-docs/terraform-docs
-    rev: "v0.16.0"
+    rev: "v0.19.0"
     hooks:
       - id: terraform-docs-system
         args: [./]
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.4.0
+    rev: v5.0.0
     hooks:
       - id: trailing-whitespace
       - id: check-added-large-files
       - id: detect-private-key
       - id: end-of-file-fixer
   - repo: https://github.com/adrienverge/yamllint.git
-    rev: v1.17.0
+    rev: v1.35.1
     hooks:
       - id: yamllint
         args: [-c=.yaml-lint.yml]

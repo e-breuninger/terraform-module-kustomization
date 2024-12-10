@@ -7,7 +7,7 @@ jobs:
     permissions: read-all
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/antonbabenko/pre-commit-terraform:v1.86.0
+      image: ghcr.io/antonbabenko/pre-commit-terraform:v1.96.2
     steps:
       - name: Install job dependencies
         run: apk add tar git
