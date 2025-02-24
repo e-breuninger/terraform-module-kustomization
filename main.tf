@@ -82,11 +82,8 @@ resource "kustomization_resource" "p1" {
 resource "kustomization_resource" "p2" {
   for_each = var.kustomization_data_source.ids_prio[2]
 
-  manifest = (
-    contains(["_/Secret"], regex("(?P<group_kind>.*/.*)/.*/.*", each.value)["group_kind"])
-    ? sensitive(var.kustomization_data_source.manifests[each.value])
-    : var.kustomization_data_source.manifests[each.value]
-  )
+  manifest = var.kustomization_data_source.manifests[each.value]
+
   timeouts {
     create = var.timeout
     update = var.timeout
