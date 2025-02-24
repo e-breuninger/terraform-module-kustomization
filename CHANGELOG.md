@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.0.1](https://github.com/e-breuninger/terraform-module-kustomization/compare/v2.0.0...v2.0.1) (2025-02-24)
+
+### Bug Fixes
+
+* Remove sensitive setting from p2 resources ([dcdb42c](https://github.com/e-breuninger/terraform-module-kustomization/commit/dcdb42c5823681829b3400fa344268ccae96aac5))
+
 ## [2.0.0](https://github.com/e-breuninger/terraform-module-kustomization/compare/v1.2.0...v2.0.0) (2024-12-10)
 
 ### ⚠ BREAKING CHANGES
