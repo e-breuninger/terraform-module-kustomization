@@ -24,17 +24,28 @@ variable "timeout" {
 }
 
 locals {
+  # We move roles to prio 0 to prevent the creation of rolebindings before their roles exist.
+  # The cluster might reject those orphan rolebindings because of potential privilege escalation.
+  role_ids = toset([
+    for _, id in var.kustomization_data_source.ids_prio[1] : id
+    if startswith(id, "rbac.authorization.k8s.io/Role/")
+  ])
   secret_ids = toset([
     for _, id in var.kustomization_data_source.ids_prio[1] : id
     if startswith(id, "_/Secret/")
   ])
-  p1_sensitive_ids    = local.secret_ids
-  p1_nonsensitive_ids = setsubtract(var.kustomization_data_source.ids_prio[1], local.p1_sensitive_ids)
+
+  p0               = setunion(var.kustomization_data_source.ids_prio[0], local.role_ids)
+  p1_sensitive_ids = local.secret_ids
+  p1_nonsensitive_ids = setsubtract(
+    var.kustomization_data_source.ids_prio[1],
+    setunion(local.p1_sensitive_ids, local.role_ids)
+  )
 }
 
 # first loop through resources in ids_prio[0]
 resource "kustomization_resource" "p0" {
-  for_each = var.kustomization_data_source.ids_prio[0]
+  for_each = local.p0
 
   manifest = var.kustomization_data_source.manifests[each.value]
   timeouts {
