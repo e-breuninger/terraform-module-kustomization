@@ -24,10 +24,11 @@ variable "timeout" {
 }
 
 locals {
-  p1_sensitive_ids = toset([
-    for id in var.kustomization_data_source.ids_prio[1] : id
-    if contains(["_/Secret"], regex("(?P<group_kind>.*/.*)/.*/.*", id)["group_kind"])
+  secret_ids = toset([
+    for _, id in var.kustomization_data_source.ids_prio[1] : id
+    if startswith(id, "_/Secret/")
   ])
+  p1_sensitive_ids    = local.secret_ids
   p1_nonsensitive_ids = setsubtract(var.kustomization_data_source.ids_prio[1], local.p1_sensitive_ids)
 }
 
