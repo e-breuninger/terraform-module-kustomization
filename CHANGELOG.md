@@ -1,5 +1,15 @@
 # Changelog
 
+## [3.0.0](https://github.com/e-breuninger/terraform-module-kustomization/compare/v2.0.1...v3.0.0) (2025-02-26)
+
+### ⚠ BREAKING CHANGES
+
+* Move Roles to p0 to prevent issues with orphaned Rolebindings
+
+### Features
+
+* Move Roles to p0 to prevent issues with orphaned Rolebindings ([f6a772e](https://github.com/e-breuninger/terraform-module-kustomization/commit/f6a772ef49e3d99f777f9f36434c822b18b896c7))
+
 ## [2.0.1](https://github.com/e-breuninger/terraform-module-kustomization/compare/v2.0.0...v2.0.1) (2025-02-24)
 
 ### Bug Fixes
