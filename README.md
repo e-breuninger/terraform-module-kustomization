@@ -4,6 +4,20 @@ This module is a convenience wrapper for the kustomization\_resource.
 (https://registry.terraform.io/providers/kbst/kustomization/latest/docs)
 It creates kustomization resources from a kustomization data source.
 
+## Migration for v3
+
+We moved Roles to prio 0 to prevent the creation of Rolebindings before their Roles exist.
+The cluster might reject those orphan Rolebindings because of potential privilege escalation.
+
+To prevent recreation of those kinds, add moved blocks like below.
+
+```terraform
+moved {
+  from = module.kustomization.kustomization_resource.p1["rbac.authorization.k8s.io/Role/<Namespace>/<RoleName>"]
+  to   = module.kustomization.kustomization_resource.p0["rbac.authorization.k8s.io/Role/<Namespace>/<RoleName>"]
+}
+```
+
 ## Migration for v2
 
 Because of changes to sensitive value detection in terraform v1.10, sensitive kinds now have their own resource.
